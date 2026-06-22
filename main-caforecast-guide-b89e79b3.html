@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>加拿大预测 · 数据视角下的趋势解读</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f3f4f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1f2937;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* hero区域 */
+    .hero {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e4e7ec;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #111827;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero .subhead {
+      font-size: 1.1rem;
+      color: #4b5563;
+      max-width: 700px;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero .inset-link {
+      background: #f9fafb;
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 680px) {
+      .card-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.8rem 2rem;
+      border: 1px solid #e2e5ea;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #1e293b;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #eef0f3;
+      padding-bottom: 0.5rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .card li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #9ca3af;
+      font-weight: bold;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0 0.25rem;
+    }
+
+    .badge {
+      background: #f0f2f5;
+      color: #2d3a4a;
+      padding: 0.2rem 0.75rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      border: 1px solid #dfe3e9;
+    }
+
+    .badge.soft {
+      background: #eef3fa;
+      border-color: #ced9e5;
+    }
+
+    /* 提示区块 */
+    .note-box {
+      background: #f8fafc;
+      border-left: 3px solid #b0bcc9;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin: 1.8rem 0;
+      font-size: 0.9rem;
+      color: #3f4a58;
+      border: 1px solid #e2e8f0;
+      border-left-width: 4px;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      color: #1f2a3a;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 0.9rem;
+    }
+
+    .footer-note {
+      border-top: 1px solid #dce1e7;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
+
+    .footer-note a {
+      color: #2d3f59;
+      text-decoration: none;
+      border-bottom: 1px dotted #9ca9b9;
+    }
+
+    .footer-note a:hover {
+      border-bottom-style: solid;
+    }
+
+    .inline-link {
+      color: #1e3a5f;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #b3c2d4;
+    }
+
+    .inline-link:hover {
+      text-decoration-color: #1e3a5f;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-top: 0.6rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e3e7ed;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- hero 摘要 -->
+  <div class="hero">
+    <h1>趋势背后 · 加拿大预测</h1>
+    <p class="subhead">
+      围绕加拿大市场、经济与公共数据，提供基于公开信息整合的趋势观察。不是预言，而是一种结构化梳理。
+    </p>
+    <p>
+      无论是利率走向、就业报告、住房指标还是资源类商品周期，<a href="https://main-caforecast.com" class="inline-link">加拿大预测</a> 尝试以数据片段拼出更完整的图景。我们关注的是可追溯的统计口径与逻辑推演，而非模糊的感觉。
+    </p>
+    <div class="inset-link">
+      ⚡ 每月更新 · 重点领域分析
+    </div>
+  </div>
+
+  <!-- 两列卡片布局 -->
+  <div class="card-grid">
+
+    <!-- 特点 / 亮点 -->
+    <div class="card">
+      <h2>几个侧重点</h2>
+      <ul>
+        <li>基于加拿大统计局、央行及行业报告交叉比照</li>
+        <li>宏观指标与细分领域（如能源、住房、零售）分类解读</li>
+        <li>避免短期噪音，偏向中周期视角（3–18个月）</li>
+        <li>每个预测/展望均标注数据来源与置信区间</li>
+      </ul>
+      <div class="badge-list">
+        <span class="badge">央行政策</span>
+        <span class="badge">劳动力市场</span>
+        <span class="badge">大宗商品</span>
+        <span class="badge soft">房地产</span>
+      </div>
+    </div>
+
+    <!-- 使用建议 -->
+    <div class="card">
+      <h2>参照而非依赖</h2>
+      <p>预测天然带有不确定性。我们建议将内容作为决策的参考维度之一，而非单一依据。尤其适合以下场景：</p>
+      <ul>
+        <li>初步了解加拿大经济当前的主要讨论议题</li>
+        <li>寻找数据线索，辅助个人研究或报告写作</li>
+        <li>对比不同机构观点时，多一份结构化梳理</li>
+      </ul>
+      <p style="margin-top: 0.6rem; font-size: 0.88rem; color: #5f6b7a;">
+        任何预测都不等同于投资建议，请结合自身判断。
+      </p>
+    </div>
+
+    <!-- 场景与内容类型 (第三张卡片，在grid中会自动换行或占满) -->
+    <div class="card">
+      <h2>常见内容类型</h2>
+      <ul>
+        <li><strong>📊 月度摘要</strong> – 核心数据速览与短期动向</li>
+        <li><strong>📈 专题深读</strong> – 房产、利率、就业等主题长文</li>
+        <li><strong>🧩 对比图集</strong> – 历史趋势与预测区间可视化</li>
+        <li><strong>📋 关键事件日历</strong> – 央行决议、CPI发布等</li>
+      </ul>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="card">
+      <h2>常见疑问</h2>
+      <div class="faq-item">
+        <strong>数据更新频率？</strong>
+        <p>大部分月度指标在发布后48小时内更新；深度分析每月2–4篇。</p>
+      </div>
+      <div class="faq-item">
+        <strong>预测与官方预测有何不同？</strong>
+        <p>我们整合多方公开预测，并标注分歧点，不替代任何机构观点。</p>
+      </div>
+      <div class="faq-item">
+        <strong>是否覆盖所有省份？</strong>
+        <p>重点在安大略、不列颠哥伦比亚、阿尔伯塔及联邦层面，其他省份视数据可得性逐步扩展。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 提示区块：克制说明 -->
+  <div class="note-box">
+    <strong style="display: block; margin-bottom: 0.25rem;">⏳ 阅读提醒</strong>
+    本页面及 <a href="https://main-caforecast.com" class="inline-link">加拿大预测</a> 网站内容均基于公开资料整理与分析，不构成任何形式的投资、置业或政策建议。数据本身存在修订可能，请以官方最新发布为准。我们力求可靠，但无法保证绝对完整或实时。
+  </div>
+
+  <!-- 一个小场景段落，增加叙述感 -->
+  <div style="background: #ffffff; border-radius: 20px; padding: 1.5rem 2rem; border: 1px solid #e2e5ea; margin-bottom: 1.5rem;">
+    <p style="color: #374151; font-size: 0.95rem;">
+      举个例子：当你关注加拿大央行下一次利率决议时，<a href="https://main-caforecast.com" class="inline-link">加拿大预测</a> 会整理市场定价概率、经济学家调查中位数以及核心通胀路径的背景。你看到的不是单一结论，而是不同情景的推演逻辑。这也是我们认为“预测”更接近一种思考框架而非水晶球的原因。
+    </p>
+  </div>
+
+  <!-- footer 区域 -->
+  <div class="footer-note">
+    <span>基于公开数据 · 内容定期迭代</span>
+    <span>不构成任何投资/法律建议 · 请理性参考</span>
+    <span><a href="https://main-caforecast.com">加拿大预测</a> —— 趋势，而非断言</span>
+  </div>
+
+</div>
+</body>
+</html>
